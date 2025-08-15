@@ -127,6 +127,17 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   </style></head>
 <body class="bg-gradient-to-br from-purple-50 to-violet-100 min-h-screen font-sans">
     
@@ -764,6 +775,18 @@
                     document.body.style.overflow = '';
                 });
             }
+
+            const targets = document.querySelectorAll('button, a, i, svg');
+            targets.forEach(el => el.classList.add('animate-on-scroll'));
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            targets.forEach(el => observer.observe(el));
         });
     </script>
 
