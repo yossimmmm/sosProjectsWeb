@@ -1,0 +1,807 @@
+<html dir="rtl" lang="he"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "fontFamily": {
+        "heebo": [
+          "Heebo",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      },
+      "colors": {
+        "primary": "#8B5CF6",
+        "secondary": "#7C3AED",
+        "accent": "#A78BFA"
+      },
+      "backdropBlur": {
+        "xs": "2px"
+      },
+      "animation": {
+        "float": "float 3s ease-in-out infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "spin-slow": "spin 8s linear infinite"
+      },
+      "keyframes": {
+        "float": {
+          "0%, 100%": {
+            "transform": "translateY(0)"
+          },
+          "50%": {
+            "transform": "translateY(-10px)"
+          }
+        }
+      }
+    }
+  }
+};</script>
+    <script>
+        // Detect device type on page load
+        function detectDeviceType() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+            document.body.classList.add(isMobile ? 'mobile-device' : 'desktop-device');
+            return isMobile;
+        }
+        
+        // Apply different styles based on device type
+        window.addEventListener('DOMContentLoaded', function() {
+            const isMobile = detectDeviceType();
+            
+            // Handle responsive elements
+            const desktopElements = document.querySelectorAll('.desktop-only');
+            const mobileElements = document.querySelectorAll('.mobile-only');
+            
+            desktopElements.forEach(el => {
+                el.style.display = isMobile ? 'none' : '';
+            });
+            
+            mobileElements.forEach(el => {
+                el.style.display = isMobile ? '' : 'none';
+            });
+            
+            // Additional device-specific adjustments
+            if (isMobile) {
+                document.body.classList.add('mobile-optimized');
+            }
+        });
+        
+        // Handle resize events to adapt to orientation changes
+        window.addEventListener('resize', function() {
+            const wasMobile = document.body.classList.contains('mobile-device');
+            const isMobile = window.innerWidth < 768;
+            
+            if (wasMobile !== isMobile) {
+                document.body.classList.toggle('mobile-device');
+                document.body.classList.toggle('desktop-device');
+                
+                const desktopElements = document.querySelectorAll('.desktop-only');
+                const mobileElements = document.querySelectorAll('.mobile-only');
+                
+                desktopElements.forEach(el => {
+                    el.style.display = isMobile ? 'none' : '';
+                });
+                
+                mobileElements.forEach(el => {
+                    el.style.display = isMobile ? '' : 'none';
+                });
+                
+                document.body.classList.toggle('mobile-optimized', isMobile);
+            }
+        });
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="bg-gradient-to-br from-purple-50 to-violet-100 min-h-screen font-sans">
+    
+    <!-- Geometric shapes for background -->
+    <div class="fixed inset-0 z-0 overflow-hidden">
+        <div class="absolute top-20 right-20 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
+        <div class="absolute top-40 left-20 w-72 h-72 bg-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 right-40 w-80 h-80 bg-lavender-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        
+        <!-- Minimalistic geometric shapes -->
+        <div class="absolute top-60 left-1/4 w-24 h-24 border-4 border-purple-200 rounded-lg opacity-30 animate-spin-slow"></div>
+        <div class="absolute bottom-40 left-1/3 w-32 h-32 border-4 border-violet-200 rounded-full opacity-30 animate-spin-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/4 right-1/4 w-40 h-40 border-4 border-lavender-200 opacity-30 transform rotate-45 animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-20 h-20 bg-purple-200 rounded-md opacity-20 animate-spin-slow" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/3 left-1/2 w-16 h-16 bg-violet-200 opacity-20 transform rotate-12 animate-float" style="animation-delay: 1s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 right-0 left-0 z-50">
+        <div class="backdrop-blur-xl bg-white/70 border-b border-white/20 shadow-sm">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <span class="text-2xl font-bold text-purple-600 cursor-pointer">
+                    <span class="text-3xl">SOS</span> Projects
+                </span>
+                <div class="flex items-center gap-4">
+                    <nav class="hidden md:flex desktop-only items-center space-x-8">
+                        <div class="backdrop-blur-xl bg-white/50 rounded-full px-3 py-1.5 text-gray-700 hover:text-purple-600 transition duration-300 text-sm cursor-pointer">
+                            <i class="fas fa-cogs mr-1"></i>
+                            שירותים
+                        </div>
+                        <div class="backdrop-blur-xl bg-white/50 rounded-full px-3 py-1.5 text-gray-700 hover:text-purple-600 transition duration-300 text-sm cursor-pointer">
+                            <i class="fas fa-tasks mr-1"></i>
+                            תהליך העבודה
+                        </div>
+                    </nav>
+                    <button id="mobile-menu-button" class="md:hidden mobile-only backdrop-blur-xl bg-white/50 rounded-full p-2 text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-purple-900/90 z-50 hidden mobile-only">
+            <div class="h-full flex flex-col">
+                <div class="flex justify-between items-center p-4 border-b border-white/10">
+                    <span class="text-2xl font-bold text-white cursor-pointer">
+                        <span class="text-3xl">SOS</span> Projects
+                    </span>
+                    <button id="close-menu-button" class="text-white p-2">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex-1 flex flex-col p-6 space-y-6">
+                    <div class="text-white text-xl font-medium py-3 border-b border-white/10 cursor-pointer">
+                        <i class="fas fa-cogs mr-2"></i>
+                        שירותים
+                    </div>
+                    <div class="text-white text-xl font-medium py-3 border-b border-white/10 cursor-pointer">
+                        <i class="fas fa-tasks mr-2"></i>
+                        תהליך העבודה
+                    </div>
+                    <div class="text-white text-xl font-medium py-3 cursor-pointer">
+                        <i class="fas fa-envelope mr-2"></i>
+                        צור קשר
+                    </div>
+                </div>
+                <div class="p-6 mt-auto">
+                    <span class="flex items-center justify-center bg-green-500 text-white py-4 px-6 rounded-xl text-lg font-medium cursor-pointer" target="_blank">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                        דברו איתנו בוואטסאפ
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 relative z-10 h-[800px] md:h-[800px] flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-right">
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+                        תשאירו את העבודה השחורה והכאב ראש 
+                        <span class="text-purple-600">לנו</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mr-0">
+                        אנחנו מספקים שירותי ביצוע פרויקטים אקדמיים וטכניים ברמה הגבוהה ביותר, עם התחייבות לאיכות, סודיות ועמידה בלוחות זמנים.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                        <span class="backdrop-blur-xl bg-white/50 border border-purple-200 text-purple-600 py-3 px-8 rounded-full text-lg font-medium hover:bg-white/70 transition duration-300 flex items-center justify-center gap-2 group cursor-pointer" target="_blank">
+                            <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
+                            <span>לפרטים בוואטסאפ</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end desktop-only">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-purple-600 rounded-2xl rotate-3 opacity-10"></div>
+                        <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl shadow-xl p-6 relative z-10 animate-float">
+                            <div class="flex flex-col gap-6">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-14 h-14 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                        <i class="fas fa-check-circle text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">איכות מובטחת</h3>
+                                        <p class="text-sm text-gray-600">כל פרויקט עובר תהליך בדיקה קפדני ומוקפד</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-14 h-14 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                        <i class="fas fa-lock text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">סודיות מלאה</h3>
+                                        <p class="text-sm text-gray-600">פרטיות מוחלטת וסודיות בכל שלבי הפרויקט</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-3">
+                                    <div class="w-14 h-14 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                        <i class="fas fa-medal text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">מומחיות מקצועית</h3>
+                                        <p class="text-sm text-gray-600">צוות מומחים בעל ניסיון רב בתחומם</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile Hero Features -->
+                <div class="w-full mt-8 mobile-only">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 flex items-center gap-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-base">איכות מובטחת</h3>
+                                <p class="text-xs text-gray-600">כל פרויקט עובר תהליך בדיקה קפדני</p>
+                            </div>
+                        </div>
+                        
+                        <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 flex items-center gap-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                <i class="fas fa-lock text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-base">סודיות מלאה</h3>
+                                <p class="text-xs text-gray-600">פרטיות מוחלטת בכל שלבי הפרויקט</p>
+                            </div>
+                        </div>
+                        
+                        <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 flex items-center gap-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                                <i class="fas fa-medal text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-base">מומחיות מקצועית</h3>
+                                <p class="text-xs text-gray-600">צוות מומחים בעל ניסיון רב בתחומם</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-12 md:py-16 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-purple-600 mb-2">250+</div>
+                        <p class="text-gray-600 text-sm md:text-base">סטודנטים שקיבלו עזרה</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-purple-600 mb-2">60+</div>
+                        <p class="text-gray-600 text-sm md:text-base">סיימו תואר בעזרתנו</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold text-purple-600 mb-2">100%</div>
+                        <p class="text-gray-600 text-sm md:text-base">אחוז עמידה בלוחות זמנים</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 md:py-16 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">השירותים שלנו</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                    אנו מציעים מגוון רחב של שירותי ביצוע פרויקטים אקדמיים וטכניים, מותאמים בדיוק לדרישות שלך
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div id="service-card-1" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-5 md:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]">
+                    <div class="w-14 h-14 md:w-16 md:h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-4 md:mb-6 border border-white/50 shadow-lg">
+                        <i class="fas fa-pen-fancy text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">עבודות אקדמיות</h3>
+                    <p class="text-sm md:text-base text-gray-600 mb-4">
+                        כתיבת עבודות סמינריוניות, עבודות גמר, מאמרים אקדמיים וכל סוגי העבודות הכתובות ברמה הגבוהה ביותר.
+                    </p>
+                    <span class="text-purple-600 font-medium flex items-center gap-2 hover:text-purple-800 transition cursor-pointer text-sm md:text-base" target="_blank">
+                        <span>למידע נוסף</span>
+                        <i class="fas fa-arrow-left text-xs md:text-sm"></i>
+                    </span>
+                </div>
+                
+                <div id="service-card-2" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-5 md:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]">
+                    <div class="w-14 h-14 md:w-16 md:h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-4 md:mb-6 border border-white/50 shadow-lg">
+                        <i class="fas fa-code text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">פרויקטים טכניים</h3>
+                    <p class="text-sm md:text-base text-gray-600 mb-4">
+                        פיתוח תוכנה, כתיבת קוד, פרויקטים בתחומי ההנדסה, מדעי המחשב, ומגוון תחומים טכניים נוספים.
+                    </p>
+                    <span class="text-purple-600 font-medium flex items-center gap-2 hover:text-purple-800 transition cursor-pointer text-sm md:text-base" target="_blank">
+                        <span>למידע נוסף</span>
+                        <i class="fas fa-arrow-left text-xs md:text-sm"></i>
+                    </span>
+                </div>
+                
+                <div id="service-card-3" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-5 md:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]">
+                    <div class="w-14 h-14 md:w-16 md:h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-4 md:mb-6 border border-white/50 shadow-lg">
+                        <i class="fas fa-chart-line text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">מחקרים וסקרים</h3>
+                    <p class="text-sm md:text-base text-gray-600 mb-4">
+                        ביצוע מחקרים אקדמיים, סקרים, ניתוח נתונים סטטיסטיים וכתיבת דוחות מחקר מקצועיים.
+                    </p>
+                    <span class="text-purple-600 font-medium flex items-center gap-2 hover:text-purple-800 transition cursor-pointer text-sm md:text-base" target="_blank">
+                        <span>למידע נוסף</span>
+                        <i class="fas fa-arrow-left text-xs md:text-sm"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-12 md:py-16 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">תהליך העבודה שלנו</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                    מערכת עבודה מסודרת ויעילה המבטיחה תוצאות מעולות
+                </p>
+            </div>
+            
+            <!-- Process Icons Row -->
+            <div class="flex justify-center items-center gap-8 mb-10 overflow-x-auto">
+                <div id="process-icon-1" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-clipboard-list text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">קבלת הפרויקט</span>
+                </div>
+                
+                <div id="process-icon-2" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-search text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">ניתוח דרישות</span>
+                </div>
+                
+                <div id="process-icon-3" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-user-graduate text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">הקצאת מומחה</span>
+                </div>
+                
+                <div id="process-icon-4" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-laptop-code text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">ביצוע הפרויקט</span>
+                </div>
+                
+                <div id="process-icon-5" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-paper-plane text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">בקרת איכות</span>
+                </div>
+                
+                <div id="process-icon-6" class="flex flex-col items-center">
+                    <div class="w-16 h-16 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 mb-3 border border-white/50 shadow-lg">
+                        <i class="fas fa-check-double text-2xl"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">מסירה</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Process Timeline -->
+            <div class="relative hidden md:block desktop-only">
+                <!-- Process timeline line -->
+                <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-purple-200 transform -translate-x-1/2"></div>
+                
+                <!-- Process steps -->
+                <div class="space-y-24 relative">
+                    <!-- Step 1 -->
+                    <div id="process-step-1" class="flex items-center">
+                        <div class="w-1/2 pr-12 text-right order-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">קבלת הפרויקט</h3>
+                            <p class="text-gray-600">
+                                לקוחות מגישים את פרטי הפרויקט דרך טופס באתר או וואטסאפ, מציינים את הנושא, ההיקף, מועדי הגשה ודרישות.
+                            </p>
+                        </div>
+                        <div class="w-1/2 flex justify-start order-2">
+                            <div class="relative">
+                                <div class="absolute right-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-clipboard-list text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg mr-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-clipboard-check text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div id="process-step-2" class="flex items-center">
+                        <div class="w-1/2 flex justify-end order-1">
+                            <div class="relative">
+                                <div class="absolute left-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-search text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg ml-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-magnifying-glass-chart text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12 text-left order-2">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">ניתוח דרישות</h3>
+                            <p class="text-gray-600">
+                                הצוות שלנו בוחן ומבהיר את המטרות, ומתאים את המשימה למומחה המתאים ביותר.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div id="process-step-3" class="flex items-center">
+                        <div class="w-1/2 pr-12 text-right order-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">הקצאת מומחה</h3>
+                            <p class="text-gray-600">
+                                הפרויקט מוקצה למומחה בעל ניסיון מוכח בתחום הרלוונטי, המתמחה בדיוק בסוג העבודה הנדרש.
+                            </p>
+                        </div>
+                        <div class="w-1/2 flex justify-start order-2">
+                            <div class="relative">
+                                <div class="absolute right-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-user-graduate text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg mr-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-user-tie text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div id="process-step-4" class="flex items-center">
+                        <div class="w-1/2 flex justify-end order-1">
+                            <div class="relative">
+                                <div class="absolute left-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-laptop-code text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg ml-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-code text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12 text-left order-2">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">ביצוע הפרויקט</h3>
+                            <p class="text-gray-600">
+                                העבודה מתבצעת לפי הסטנדרטים האקדמיים או הטכניים הגבוהים ביותר, תוך הקפדה על כל הדרישות.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div id="process-step-5" class="flex items-center">
+                        <div class="w-1/2 pr-12 text-right order-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">בקרת איכות</h3>
+                            <p class="text-gray-600">
+                                תהליך בדיקה כפול, בדיקות עיצוב וסריקת פלגיאט להבטחת מקוריות ואיכות גבוהה.
+                            </p>
+                        </div>
+                        <div class="w-1/2 flex justify-start order-2">
+                            <div class="relative">
+                                <div class="absolute right-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-paper-plane text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg mr-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-clipboard-check text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 6 -->
+                    <div id="process-step-6" class="flex items-center">
+                        <div class="w-1/2 flex justify-end order-1">
+                            <div class="relative">
+                                <div class="absolute left-[-30px] z-10 w-16 h-16 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50">
+                                    <i class="fas fa-check-double text-xl"></i>
+                                </div>
+                                <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 shadow-lg ml-12 w-72 h-48 flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <i class="fas fa-inbox-in text-purple-400 text-6xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12 text-left order-2">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">מסירה</h3>
+                            <p class="text-gray-600">
+                                המוצר הסופי נשלח לפני המועד האחרון, מוכן להגשה ובהתאם לכל הדרישות.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Process Timeline -->
+            <div class="block md:hidden mobile-only">
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div id="mobile-process-step-1" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-clipboard-list text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">קבלת הפרויקט</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            לקוחות מגישים את פרטי הפרויקט דרך טופס באתר או וואטסאפ, מציינים את הנושא, ההיקף, מועדי הגשה ודרישות.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div id="mobile-process-step-2" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-search text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">ניתוח דרישות</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            הצוות שלנו בוחן ומבהיר את המטרות, ומתאים את המשימה למומחה המתאים ביותר.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div id="mobile-process-step-3" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-user-graduate text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">הקצאת מומחה</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            הפרויקט מוקצה למומחה בעל ניסיון מוכח בתחום הרלוונטי, המתמחה בדיוק בסוג העבודה הנדרש.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div id="mobile-process-step-4" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-laptop-code text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">ביצוע הפרויקט</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            העבודה מתבצעת לפי הסטנדרטים האקדמיים או הטכניים הגבוהים ביותר, תוך הקפדה על כל הדרישות.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div id="mobile-process-step-5" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-paper-plane text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">בקרת איכות</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            תהליך בדיקה כפול, בדיקות עיצוב וסריקת פלגיאט להבטחת מקוריות ואיכות גבוהה.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 6 -->
+                    <div id="mobile-process-step-6" class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 backdrop-blur-xl bg-white/70 text-purple-600 rounded-full flex items-center justify-center shadow-lg border border-white/50 flex-shrink-0">
+                                <i class="fas fa-check-double text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">מסירה</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            המוצר הסופי נשלח לפני המועד האחרון, מוכן להגשה ובהתאם לכל הדרישות.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section (smaller version) -->
+    <section id="instagram" class="py-12 md:py-16 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-3 md:mb-4">האינסטגרם שלנו</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                    עקבו אחרינו באינסטגרם לעדכונים וטיפים
+                </p>
+            </div>
+            
+            <!-- Instagram Feed -->
+            <div class="backdrop-blur-xl bg-white/50 border border-white/50 rounded-2xl p-6 md:p-8 shadow-lg">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 md:w-14 md:h-14 backdrop-blur-xl bg-white/70 rounded-full flex items-center justify-center text-purple-600 border border-white/50 shadow-lg">
+                            <i class="fab fa-instagram text-xl md:text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg">SOS Projects</h3>
+                            <p class="text-sm text-gray-600">@sos.projects.il</p>
+                        </div>
+                    </div>
+                    <span class="backdrop-blur-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-full text-sm font-medium hover:from-purple-600 hover:to-pink-600 transition duration-300 cursor-pointer" target="_blank">
+                        עקבו אחרינו
+                    </span>
+                </div>
+                
+                <!-- Instagram Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-300 to-pink-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="py-12 md:py-16 bg-gradient-to-br from-purple-900 to-violet-900 text-white relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SOS Projects</h3>
+                    <p class="text-gray-300 mb-4 text-sm">
+                        שירותי ביצוע פרויקטים אקדמיים וטכניים ברמה הגבוהה ביותר, עם התחייבות לאיכות, סודיות ועמידה בלוחות זמנים.
+                    </p>
+                    <div class="flex space-x-4">
+                        <span class="text-white hover:text-purple-300 transition cursor-pointer">
+                            <i class="fab fa-instagram"></i>
+                        </span>
+                        <span class="text-white hover:text-purple-300 transition cursor-pointer">
+                            <i class="fab fa-whatsapp"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">צור קשר</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>050-1234567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@sosprojects.co.il</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            <span>שלחו הודעה בוואטסאפ</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">קישורים מהירים</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <span class="hover:text-purple-300 transition cursor-pointer">דף הבית</span>
+                        </li>
+                        <li>
+                            <span class="hover:text-purple-300 transition cursor-pointer">שירותים</span>
+                        </li>
+                        <li>
+                            <span class="hover:text-purple-300 transition cursor-pointer">תהליך העבודה</span>
+                        </li>
+                        <li>
+                            <span class="hover:text-purple-300 transition cursor-pointer">צור קשר</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-purple-700 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-300 mb-4 md:mb-0">
+                    © 2023 SOS Projects. כל הזכויות שמורות.
+                </p>
+                <div class="flex space-x-4">
+                    <span class="text-sm text-gray-300 hover:text-white transition cursor-pointer">תנאי שימוש</span>
+                    <span class="text-sm text-gray-300 hover:text-white transition cursor-pointer">מדיניות פרטיות</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && closeMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                closeMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+    </script>
+
+</body></html>
